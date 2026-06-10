@@ -10,9 +10,19 @@
         :style="{ cursor }"
         hover
         height="100%"
-        :to="$attrs.selected ? undefined : recipeRoute"
         @click="$emit('selected')"
       >
+        <a
+          :href="recipeRoute"
+          target="_blank"
+          rel="noopener noreferrer"
+          style="
+           text-decoration: none;
+           color: inherit;
+           display: block;
+           height: 100%;
+           "
+        >
         <v-img
           v-if="vertical"
           class="rounded-sm"
@@ -118,6 +128,7 @@
             </v-card-actions>
           </slot>
         </v-list-item>
+        </a>
         <slot />
       </v-card>
     </v-expand-transition>

@@ -55,9 +55,6 @@
             <RecipePageEditorToolbar v-if="isEditForm" v-model="recipe" />
           </div>
           <div>
-            <RecipePageIngredientEditor v-if="isEditForm" v-model="recipe" />
-          </div>
-          <div>
             <RecipePageScale v-model="scale" :recipe="recipe" />
           </div>
 
@@ -75,14 +72,21 @@
               md="4"
               :class="$vuetify.display.mdAndUp ? 'border-e-thin' : null"
             >
-              <RecipePageIngredientToolsView v-if="!isEditForm" :recipe="recipe" :scale="scale" class="pr-2" />
               <RecipePageOrganizers v-if="$vuetify.display.mdAndUp" v-model="recipe" class="pr-2" @item-selected="chipClicked" />
+              <RecipePageIngredientToolsView v-if="!isEditForm" :recipe="recipe" :scale="scale" class="pr-2" />
             </v-col>
             <!--
               the right column is always rendered, but it's layout width is determined by where the left column is
               rendered.
             -->
             <v-col cols="12" sm="12" :md="8 + (isCookMode ? 1 : 0) * 4">
+              <div v-if="!$vuetify.display.mdAndUp">
+                <RecipePageOrganizers v-model="recipe" />
+              </div>
+              <RecipeNotes v-model="recipe.notes" :edit="isEditForm" />
+          <div>
+            <RecipePageIngredientEditor v-if="isEditForm" v-model="recipe" />
+          </div>
               <RecipePageInstructions
                 v-model="recipe.recipeInstructions"
                 v-model:assets="recipe.assets"
@@ -95,10 +99,6 @@
                   {{ $t("general.add") }}
                 </BaseButton>
               </div>
-              <div v-if="!$vuetify.display.mdAndUp">
-                <RecipePageOrganizers v-model="recipe" />
-              </div>
-              <RecipeNotes v-model="recipe.notes" :edit="isEditForm" />
             </v-col>
           </v-row>
           <RecipePageFooter v-model="recipe" />

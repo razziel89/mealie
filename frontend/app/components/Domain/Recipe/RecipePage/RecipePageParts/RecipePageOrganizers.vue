@@ -52,6 +52,7 @@
     </v-card>
 
     <!-- Recipe Tools Edit -->
+    <!--
     <v-card
       v-if="isEditForm"
       class="mt-2"
@@ -68,6 +69,7 @@
         />
       </v-card-text>
     </v-card>
+    -->
 
     <RecipeNutrition
       v-if="recipe.settings.showNutrition"
