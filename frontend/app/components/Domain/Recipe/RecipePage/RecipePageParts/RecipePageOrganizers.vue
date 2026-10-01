@@ -55,7 +55,7 @@
     <!--
     <v-card
       v-if="isEditForm"
-      class="mt-2"
+      class="mt-4"
     >
       <v-card-title class="py-2">
         {{ $t('tool.required-tools') }}
@@ -65,7 +65,6 @@
         <RecipeOrganizerSelector
           v-model="recipe.tools"
           selector-type="tools"
-          v-bind="$attrs"
         />
       </v-card-text>
     </v-card>
